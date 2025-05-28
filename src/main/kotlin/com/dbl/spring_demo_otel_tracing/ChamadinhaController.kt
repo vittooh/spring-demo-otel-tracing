@@ -1,5 +1,7 @@
 package com.dbl.spring_demo_otel_tracing
 
+import io.opentelemetry.api.trace.Span
+import io.opentelemetry.api.trace.Tracer
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,6 +19,9 @@ class ChamadinhaController(
     @GetMapping
     fun getHora(): String {
             log.info("Hora do dia!! " + LocalDateTime.now())
+
+        Span.current().spanContext.spanId
+        Span.current().spanContext.traceId
 
 
         val data = mutableListOf("a;2;2","a;1;1","b;2;2")
