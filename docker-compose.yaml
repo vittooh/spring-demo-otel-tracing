@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    image: mdillon/postgis:11-alpine
+    environment:
+      POSTGRES_DB: "desafiobd"
+      POSTGRES_USER: "desafiobd"
+      POSTGRES_PASSWORD: "desafiobd"
+    ports:
+      - "5432:5432"
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686" # the jaeger UI
+      - "4317:4317" # the OpenTelemetry collector grpc
+      - "4318:4318" # the OpenTelemetry collector grpc
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
